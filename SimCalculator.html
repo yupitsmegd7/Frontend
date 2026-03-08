@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Calculator</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            align-items: center;
+            background: black;
+            font-family: Arial;
+
+        }
+
+        .Calculator {
+            padding: 60px;
+            background: grey;
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0 0 10px;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 60px);
+            gap: 10px;
+        }
+
+        #display {
+            width: 98.5%;
+            height: 50px;
+            padding: 0px;
+            margin-bottom: 11px;
+            font-size: 20px;
+            border-radius: 10px;
+            border-color: black;
+            background-color: aliceblue;
+
+
+        }
+
+        .zero {
+            height: 60px;
+            font-weight: bold;
+            grid-column: span 2;
+            cursor: pointer;
+                        border-radius: 10px;
+        }
+
+        .butt {
+            height: 60px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 19px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="Calculator">
+        <input type="text" id="display" disabled>
+        <div class="buttons">
+            <button class="butt" onclick="appendValue('^2')">sqrt </button>
+            <button class="butt" onclick="appendValue('%')">%</button>
+            <button class="butt" onclick="appendValue('log')">log</button>
+            <button class="butt" onclick="appendValue('+')">+</button>
+            <button class="butt" onclick="appendValue('1')">1</button>
+            <button class="butt" onclick="appendValue('2')">2</button>
+            <button class="butt" onclick="appendValue('3')">3</button>
+            <button class="butt" onclick="appendValue('/')">÷</button>
+            <button class="butt" onclick="appendValue('4')">4</button>
+            <button class="butt" onclick="appendValue('5')">5</button>
+            <button class="butt" onclick="appendValue('6')">6</button>
+            <button class="butt" onclick="appendValue('-')">-</button>
+            <button class="butt" onclick="appendValue('7')"> 7</button>
+            <button class="butt" onclick="appendValue('8')">8</button>
+            <button class="butt" onclick="appendValue('9')">9</button>
+            <button class="butt" onclick="appendValue('*')">*</button>
+            <button class="zero" onclick="appendValue('0')">0</button>
+            <button class="butt" onclick="clearDisplay()">CE</button>
+            <button class="butt" onclick="calculate()">=</button>
+
+        </div>
+    </div>
+
+    <script >
+        function appendValue(value) {
+
+     if (value === "^2") {
+
+        display.value = Math.pow(display.value, 2);
+    }
+
+    else if (value === "%") {
+
+        display.value = display.value / 100;
+    }
+
+    else if (value === "log") {
+        // log base 10
+        if (display.value > 0) {
+            display.value = Math.log10(display.value);
+        } else {
+            display.value = "Error";
+        }
+    }
+
+    else {
+
+        display.value += value;
+    }
+}
+
+
+
+function clearDisplay() {
+    document.getElementById("display").value = "";
+}
+
+function calculate() {
+    let expression = document.getElementById("display").value;
+    try {
+        document.getElementById("display").value = eval(expression);
+    } catch {
+        alert("Invalid Expression");
+    }
+}
+
+function log() {
+}
+    </script>
+</body>
